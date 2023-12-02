@@ -21,12 +21,7 @@ router.get("/vehicle/search/:model", (req, res) => {
     const model = req.params.model;
     for (let vehicle of vehicles) {
         if (vehicle.model == model) {
-            res.send({
-                model: vehicle.model,
-                color: vehicle.color,
-                year: vehicle.year,
-                power: vehicle.power
-            });
+            res.send(vehicle);
             return;
         }
     }
