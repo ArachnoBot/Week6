@@ -15,7 +15,21 @@ router.get('/hello', (req, res) => {
 router.post('/vehicle/add', (req, res) => {
     const newVehicle = req.body;
     vehicles.push(newVehicle);
-    console.log(vehicles);
     res.status(201).send("Vehicle added");
+});
+router.get("/vehicle/search/:model", (req, res) => {
+    const model = req.params.model;
+    for (let vehicle of vehicles) {
+        if (vehicle.model == model) {
+            res.send({
+                model: vehicle.model,
+                color: vehicle.color,
+                year: vehicle.year,
+                power: vehicle.power
+            });
+            return;
+        }
+    }
+    res.sendStatus(404);
 });
 module.exports = router;

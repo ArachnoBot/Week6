@@ -1,11 +1,14 @@
 document.getElementById("submitVehicle").addEventListener("click", sendVehicle)
 
 function sendVehicle() {
+    modelText = document.getElementById("model").value
+    
     data = {
-        "model": "Boring generic vehicle",
-        "color": "Red",
-        "year": 1993,
-        "power": 60
+        model: modelText,
+        color: "Red",
+        year: 1993,
+        power: 60,
+        wingspan: 69
     }
 
     fetch("/vehicle/add", {
@@ -15,4 +18,6 @@ function sendVehicle() {
         },
         body: JSON.stringify(data)
     })
+
+    modelText = ""
 }
